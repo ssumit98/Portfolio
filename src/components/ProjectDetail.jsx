@@ -5,6 +5,7 @@ import {
   ChevronRight, Layers, Layout, Globe, Package, Cpu, Code,
 } from "lucide-react";
 import Swal from 'sweetalert2';
+import { fetchProjects } from "../utils/dataService";
 
 const TECH_ICONS = {
   React: Globe,
@@ -102,18 +103,33 @@ const ProjectDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
-    const selectedProject = storedProjects.find((p) => String(p.id) === id);
-    
-    if (selectedProject) {
-      const enhancedProject = {
-        ...selectedProject,
-        Features: selectedProject.Features || [],
-        TechStack: selectedProject.TechStack || [],
-        Github: selectedProject.Github || 'https://github.com/ssumit98/',
-      };
-      setProject(enhancedProject);
-    }
+
+    const loadProject = async () => {
+      let projects = JSON.parse(localStorage.getItem("projects")) || [];
+
+      if (projects.length === 0) {
+        projects = await fetchProjects();
+        if (projects) {
+          localStorage.setItem("projects", JSON.stringify(projects));
+        }
+      }
+
+      const selectedProject = projects.find((p) => String(p.id) === id);
+
+      if (selectedProject) {
+        const enhancedProject = {
+          ...selectedProject,
+          Features: selectedProject.Features || [],
+          TechStack: selectedProject.TechStack || [],
+          Github: selectedProject.Github || 'https://github.com/ssumit98/',
+        };
+        setProject(enhancedProject);
+      } else {
+        console.error(`Project with ID ${id} not found.`);
+      }
+    };
+
+    loadProject();
   }, [id]);
 
   if (!project) {
@@ -252,69 +268,6 @@ const ProjectDetails = () => {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes blob {
-          0% {
-            transform: translate(0px, 0px) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
-          100% {
-            transform: translate(0px, 0px) scale(1);
-          }
-        }
-        .animate-blob {
-          animation: blob 10s infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.7s ease-out;
-        }
-        .animate-slideInLeft {
-          animation: slideInLeft 0.7s ease-out;
-        }
-        .animate-slideInRight {
-          animation: slideInRight 0.7s ease-out;
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        @keyframes slideInLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        @keyframes slideInRight {
-          from {
-            opacity: 0;
-            transform: translateX(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-      `}</style>
     </div>
   );
 };
