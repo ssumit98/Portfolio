@@ -3,7 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Briefcase, GraduationCap, Calendar } from 'lucide-react';
 
-const Timeline = () => {
+const Timeline = ({ experience, education }) => {
   const [timelineData, setTimelineData] = useState([]);
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -17,47 +17,29 @@ const Timeline = () => {
       duration: 1000,
     });
 
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/data.json');
-        const data = await response.json();
-        
-        const experience = data.experience.map(item => ({ ...item, type: 'experience' }));
-        const education = [
-          {
-            "title": "M.tech for Working Professional in Cyber Security",
-            "company": "IIIT Kottayam",
-            "period": "2023 - Present",
-            "type": "education"
-          },
-          {
-            "title": "PG Diploma in Advanced Computing",
-            "company": "CDAC Pune",
-            "period": "2020 - 2021",
-            "type": "education"
-          },
-          {
-            "title": "B.tech Civil Engineering",
-            "company": "MGM College of Engineering and Technology",
-            "period": "2018 - 2021",
-            "type": "education"
-          }
-        ];
-        
-        const combinedData = [...experience, ...education].sort((a, b) => {
-          const aYear = parseInt(a.period.split(' - ')[1] === 'Present' ? new Date().getFullYear() : a.period.split(' - ')[1]);
-          const bYear = parseInt(b.period.split(' - ')[1] === 'Present' ? new Date().getFullYear() : b.period.split(' - ')[1]);
-          return bYear - aYear;
-        });
+    if (experience && education) {
+      const experienceData = experience.map(item => ({
+        ...item,
+        type: 'experience',
+        mainTitle: item.title,
+        subTitle: item.company,
+      }));
+      const educationData = education.map(item => ({
+        ...item,
+        type: 'education',
+        mainTitle: item.degree,
+        subTitle: item.institution,
+      }));
 
-        setTimelineData(combinedData);
-      } catch (error) {
-        console.error("Could not fetch timeline data:", error);
-      }
-    };
+      const combinedData = [...experienceData, ...educationData].sort((a, b) => {
+        const aYear = parseInt(a.period.split(' - ')[1] === 'Present' ? new Date().getFullYear() : a.period.split(' - ')[1]);
+        const bYear = parseInt(b.period.split(' - ')[1] === 'Present' ? new Date().getFullYear() : b.period.split(' - ')[1]);
+        return bYear - aYear;
+      });
 
-    fetchData();
-  }, []);
+      setTimelineData(combinedData);
+    }
+  }, [experience, education]);
 
   const Icon = ({ type }) => {
     if (type === 'experience') {
@@ -99,8 +81,8 @@ const Timeline = () => {
                 <div
                   className="bg-white/5 backdrop-blur-xl rounded-2xl shadow-2xl p-6 transform transition-all duration-500 hover:shadow-[#6366f1]/20 hover:scale-105"
                 >
-                  <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                  <p className="text-indigo-400 font-semibold mb-3">{item.company}</p>
+                  <h3 className="text-xl font-bold text-white mb-2">{item.mainTitle}</h3>
+                  <p className="text-indigo-400 font-semibold mb-3">{item.subTitle}</p>
                   <div className="flex items-center text-sm text-gray-400 mb-4">
                     <Calendar className="w-4 h-4 mr-2" />
                     <span>{item.period}</span>
@@ -114,12 +96,17 @@ const Timeline = () => {
                   )}
                 </div>
               ) : (
-                <div className={`flex ${index % 2 === 0 ? 'justify-end pr-8' : 'justify-start pl-8'}`}>
+                <div className={`flex ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
                   <button
                     onClick={() => handleToggle(index)}
                     className="bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-[#6366f1]/50 transform transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#a855f7]"
                   >
-                    {item.period.split(' - ')[0]}
+                    {(() => {
+                      const parts = item.period.split(' - ');
+                      const startYear = parts[0].split(' ').pop();
+                      const endYear = parts[1] === 'Present' ? 'Present' : parts[1].split(' ').pop();
+                      return `${startYear} - ${endYear}`;
+                    })()}
                   </button>
                 </div>
               )}

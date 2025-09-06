@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
 
-import { fetchProjects, fetchCertificates } from "../utils/dataService";
-
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@mui/material/styles";
@@ -118,11 +116,9 @@ const techStacks = [
   { icon: "SweetAlert.svg", language: "SweetAlert2" },
 ];
 
-export default function FullWidthTabs() {
+export default function FullWidthTabs({ projects, certificates }) {
   const theme = useTheme();
   const [value, setValue] = useState(0);
-  const [projects, setProjects] = useState([]);
-  const [certificates, setCertificates] = useState([]);
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [showAllCertificates, setShowAllCertificates] = useState(false);
   const isMobile = window.innerWidth < 768;
@@ -133,41 +129,6 @@ export default function FullWidthTabs() {
       once: false,
     });
   }, []);
-
-
-  const fetchData = useCallback(async () => {
-    try {
-      // Fetch data from local JSON file
-      const [projectData, certificateData] = await Promise.all([
-        fetchProjects(),
-        fetchCertificates()
-      ]);
-
-      setProjects(projectData);
-      setCertificates(certificateData);
-
-      // Store in localStorage for caching
-      localStorage.setItem("projects", JSON.stringify(projectData));
-      localStorage.setItem("certificates", JSON.stringify(certificateData));
-    } catch (error) {
-      console.error("Error fetching data from local JSON:", error.message);
-    }
-  }, []);
-
-
-
-  useEffect(() => {
-    // Coba ambil dari localStorage dulu untuk laod lebih cepat
-    const cachedProjects = localStorage.getItem('projects');
-    const cachedCertificates = localStorage.getItem('certificates');
-
-    if (cachedProjects && cachedCertificates) {
-        setProjects(JSON.parse(cachedProjects));
-        setCertificates(JSON.parse(cachedCertificates));
-    }
-    
-    fetchData(); // Tetap panggil fetchData untuk sinkronisasi data terbaru
-  }, [fetchData]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

@@ -23,7 +23,7 @@
     },
     {
       "id": 4,
-      "Title": "Digi Album (Photographers & Users System)",
+      "Title": "Digi Album (Photographer & Users System)",
       "Description": "A secure and cheapest S3 cloud platform for wedding photographers to manage clients and deliver high-resolution media albums. It enables couples to uniquely store, access, and share their precious wedding memories from anywhere",
       "Img": "/digiAlbum.png",
       "Link": "https://www.digialbum.in/"
@@ -40,19 +40,35 @@
     },
     {
       "id": 3,
-      "Img": "/IITB.png"
-    },
-    {
-      "id": 4,
-      "Img": "/cybersecurity.png"
-    },
-    {
-      "id": 5,
       "Img": "/Cybersecurity-2.png"
     },
     {
+      "id": 4,
+      "Img": "/Funteam1.png"
+    },
+    {
+      "id": 5,
+      "Img": "/Jepp1.png"
+    },
+    {
       "id": 6,
-      "Img": "https://placehold.co/400x300/ef4444/FFFFFF?text=MongoDB+Certificate"
+      "Img": "/Jepp2.png"
+    },
+    {
+      "id": 7,
+      "Img": "/Jepp3.png"
+    },
+    {
+      "id": 8,
+      "Img": "/Jepp4.png"
+    },
+    {
+      "id": 10,
+      "Img": "/IITB.png"
+    },
+    {
+      "id": 9,
+      "Img": "/cybersecurity.png"
     }
   ],
   "skills": [
