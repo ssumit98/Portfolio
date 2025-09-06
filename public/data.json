@@ -1,0 +1,133 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "Title": "Sprint Poker",
+      "Description": "Sprint Poker is an online web app for agile teams to collaboratively estimate tasks and plan sprints. It provides a simple, interactive interface to help teams reach a consensus on story points and align on sprint goals.",
+      "Img": "/sprint-poker.png",
+      "Link": "https://sprint-poker.vercel.app/"
+    },
+    {
+      "id": 2,
+      "Title": "Fountain Show Booking System",
+      "Description": "A comprehensive platform for accessing garden information and booking tickets online, ensuring a seamless and convenient process for planning a visit.",
+      "Img": "/Sant Dnyaneshwar Udyan Booking.png",
+      "Link": "https://sdu-five.vercel.app/"
+    },
+    {
+      "id": 3,
+      "Title": "Court Management System (User + Admin)",
+      "Description": "A full-stack Court Management System featuring distinct user and admin dashboards for streamlined court booking. It provides a robust interface for users to reserve courts while enabling administrators to efficiently manage all reservations, payments and system data.",
+      "Img": "/Court Management System.png",
+      "Link": "https://user-inky.vercel.app/"
+    },
+    {
+      "id": 4,
+      "Title": "Digi Album (Photographer & Users System)",
+      "Description": "A secure and cheapest S3 cloud platform for wedding photographers to manage clients and deliver high-resolution media albums. It enables couples to uniquely store, access, and share their precious wedding memories from anywhere",
+      "Img": "/digiAlbum.png",
+      "Link": "https://www.digialbum.in/"
+    }
+  ],
+  "certificates": [
+    {
+      "id": 1,
+      "Img": "/WRD-management.png"
+    },
+    {
+      "id": 2,
+      "Img": "/Irrigation-farmers-app.png"
+    },
+    {
+      "id": 3,
+      "Img": "/Cybersecurity-2.png"
+    },
+    {
+      "id": 4,
+      "Img": "/Funteam1.png"
+    },
+    {
+      "id": 5,
+      "Img": "/Jepp1.png"
+    },
+    {
+      "id": 6,
+      "Img": "/Jepp2.png"
+    },
+    {
+      "id": 7,
+      "Img": "/Jepp3.png"
+    },
+    {
+      "id": 8,
+      "Img": "/Jepp4.png"
+    },
+    {
+      "id": 10,
+      "Img": "/IITB.png"
+    },
+    {
+      "id": 9,
+      "Img": "/cybersecurity.png"
+    }
+  ],
+  "skills": [
+    {"name": "HTML"},
+    {"name": "CSS"},
+    {"name": "JavaScript"},
+    {"name": "Responsive Design"},
+    {"name": "JSP"},
+    {"name": "TypeScript"},
+    {"name": "GIT"},
+    {"name": "React"},
+    {"name": "Node.js"},
+    {"name": "SQL"},
+    {"name": "MongoDB"},
+    {"name": "Performance Optimization"}
+  ],
+  "experience": [
+    {
+      "title": "Frontend Developer",
+      "company": "The Boeing Company",
+      "period": "Nov 2022 - Present",
+      "responsibilities": [
+        "Worked on web development project.",
+        "Collaborated closely with cross-functional teams.",
+        "Transformed design concepts into interactive, high-performance web solutions.",
+        "From translating wireframes to writing clean code, I focused on delivering exceptional user experiences."
+      ]
+    },
+    {
+      "title": "Associate UI Developer",
+      "company": "The Boeing Company",
+      "period": "Nov 2021 - Nov 2022",
+      "responsibilities": [
+        "Assisted in the development of web applications.",
+        "Worked on shop.boing.com site development.",
+        "Played a vital role in enhancing the company's e-commerce platform.",
+        "Received 'Wall of Fame' award for outstanding performance."
+      ]
+    }
+  ],
+  "contact": {
+    "email": "summit.sabbinwar@gmail.com",
+    "phone": "+91 7768058802"
+  },
+  "education": [
+    {
+      "degree": "M.tech for Working Professional in Cyber Security",
+      "institution": "IIIT Kottayam",
+      "period": "2023 - Present"
+    },
+    {
+      "degree": "PG Diploma in Advanced Computing",
+      "institution": "CDAC Pune",
+      "period": "2020 - 2021"
+    },
+    {
+      "degree": "B.tech Civil Engineering",
+      "institution": "MGM College of Engineering and Technology",
+      "period": "2018 - 2021"
+    }
+  ]
+}
